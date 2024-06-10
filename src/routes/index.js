@@ -1,9 +1,9 @@
 import express from "express";
-import users from "./userRoutes.js";
+import usuario from "./usuarioRoutes.js";
 
 const routes = (app) => {
   app.route("/").get((req, res) => res.status(200).send("Api Postagens"));
-  app.use(express.json(), users);
+  app.use(express.json(), usuario);
 };
 
 export default routes;
