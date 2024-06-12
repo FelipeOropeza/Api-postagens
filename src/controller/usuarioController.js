@@ -1,13 +1,13 @@
 import {
-  listarUsuario,
-  insertUsuario,
-  updateUsuario,
+  getUsuario,
+  postUsuario,
+  putUsuario,
   deleteUsuario,
 } from "../services/usuarioService.js";
 
 class UsuarioController {
   static async listarUsuario(req, res) {
-    const listausuarios = await listarUsuario();
+    const listausuarios = await getUsuario();
 
     if (listausuarios.length > 0) {
       res.status(200).json(listausuarios);
@@ -18,7 +18,7 @@ class UsuarioController {
 
   static async insertUsuario(req, res) {
     try {
-      const usuario = await insertUsuario(req.body);
+      const usuario = await postUsuario(req.body);
 
       res
         .status(201)
@@ -40,7 +40,7 @@ class UsuarioController {
 
   static async updateUsuario(req, res) {
     try {
-      await updateUsuario(req.params.id, req.body);
+      await putUsuario(req.params.id, req.body);
 
       res.status(201).json(`O usuario foi atualizado com sucesso`);
     } catch (erro) {
@@ -58,7 +58,7 @@ class UsuarioController {
     }
   }
 
-  static async deleteUsuario(req, res) {
+  static async delatarUsuario(req, res) {
     try {
       await deleteUsuario(req.params.id);
 

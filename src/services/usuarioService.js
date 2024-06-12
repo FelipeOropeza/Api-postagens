@@ -1,16 +1,16 @@
 import prisma from "../prisma/client.js";
 
-export const insertUsuario = async (data) => {
+export const getUsuario = async () => {
+  return await prisma.usuario.findMany();
+};
+
+export const postUsuario = async (data) => {
   return await prisma.usuario.create({
     data,
   });
 };
 
-export const listarUsuario = async () => {
-  return await prisma.usuario.findMany();
-};
-
-export const updateUsuario = async (id, data) => {
+export const putUsuario = async (id, data) => {
   return await prisma.usuario.update({
     where: {
       id: id,
