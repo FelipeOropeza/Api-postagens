@@ -6,10 +6,9 @@ export const getPostagem = async (data) => {
 };
 
 export const postPostagem = async (data) => {
-  const slug = generateSlug(data.titulo);
   const novapostagem = await prisma.postagem.create({
     data: {
-      slug: slug,
+      slug: generateSlug(data.titulo),
       titulo: data.titulo,
       body: data.body,
       autor: {
@@ -19,4 +18,25 @@ export const postPostagem = async (data) => {
   });
 
   return novapostagem;
+};
+
+export const putPostagem = async (id, data) => {
+  return await prisma.postagem.update({
+    where: {
+      id: id,
+    },
+    data: {
+      slug: data.titulo != null ? generateSlug(data.titulo) : data.slug,
+      titulo: data.titulo,
+      body: data.body,
+    },
+  });
+};
+
+export const deletePostagem = async (id) => {
+  return await prisma.postagem.delete({
+    where: {
+      id: id,
+    },
+  });
 };
