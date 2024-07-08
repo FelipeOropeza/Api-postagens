@@ -2,7 +2,11 @@ import prisma from "../prisma/client.js";
 import generateSlug from "../utils/slugUtils.js";
 
 export const getPostagem = async (data) => {
-  return await prisma.postagem.findMany();
+  return await prisma.postagem.findMany({
+    include: {
+      comentarios: true
+    }
+  });
 };
 
 export const postPostagem = async (data) => {
