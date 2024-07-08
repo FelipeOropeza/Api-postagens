@@ -22,6 +22,7 @@ model Usuario {
   id          String       @id @default(auto()) @map("_id") @db.ObjectId
   email       String       @unique
   nome        String
+  senha       String
   posts       Postagem[]
   comentarios Comentario[]
 }
