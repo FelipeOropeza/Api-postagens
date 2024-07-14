@@ -10,8 +10,8 @@ export const postUsuario = async (data) => {
   const salt = bcryptjs.genSaltSync(10);
   const hash = bcryptjs.hashSync(data.senha, salt);
 
-  if(!validarEmail(data.email)){
-    throw new Error('O email fornecido não é válido.');
+  if (!validarEmail(data.email)) {
+    throw new Error("O email fornecido não é válido.");
   }
 
   const newUsuario = await prisma.usuario.create({
@@ -29,8 +29,8 @@ export const putUsuario = async (id, data) => {
   const salt = bcryptjs.genSaltSync(10);
   const hash = bcryptjs.hashSync(data.senha, salt);
 
-  if(!validarEmail(data.email)){
-    throw new Error('O novo email fornecido não é válido.');
+  if (!validarEmail(data.email)) {
+    throw new Error("O novo email fornecido não é válido.");
   }
 
   const updateUsuario = await prisma.usuario.update({
