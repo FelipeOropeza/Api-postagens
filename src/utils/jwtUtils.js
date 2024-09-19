@@ -3,6 +3,10 @@ import jwt from "jsonwebtoken";
 export const generateToken = (userId) => {
   const secret = process.env.SECRET;
 
+  if (!secret) {
+    throw new Error("A chave secreta não está definida");
+  }
+
   try {
     const token = jwt.sign(
       {
@@ -13,12 +17,16 @@ export const generateToken = (userId) => {
 
     return token;
   } catch (erro) {
-    throw new Error(erro);
+    throw new Error(`Erro ao gerar o token: ${erro.message}`);
   }
 }
 
 export const verifyToken = (token) => {
   const secret = process.env.SECRET;
+
+  if (!secret) {
+    throw new Error("A chave secreta não está definida");
+  }
 
   try {
     return jwt.verify(token, secret);
