@@ -9,6 +9,7 @@ export const loginUsuario = async (data) => {
     },
     select: {
       id: true,
+      nome: true,
       email: true,
       senha: true,
     },
@@ -26,5 +27,5 @@ export const loginUsuario = async (data) => {
 
   const token = generateToken(usuario.id);
 
-  return token;
+  return token, usuario.id, usuario.nome;
 };
