@@ -5,7 +5,7 @@ class AuthController {
     try {
       const { token, id, nome } = await loginUsuario(req.body);
 
-      res.status(200).json({ token: token, id: id, nome: nome });
+      res.status(200).json({ token, id, nome });
     } catch (erro) {
       res
         .status(500)
