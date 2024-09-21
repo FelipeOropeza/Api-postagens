@@ -27,5 +27,5 @@ export const loginUsuario = async (data) => {
 
   const token = generateToken(usuario.id);
 
-  return token, usuario.id, usuario.nome;
+  return { token, id: usuario.id, nome: usuario.nome };
 };
