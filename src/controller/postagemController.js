@@ -1,6 +1,7 @@
 import {
   deletePostagem,
   getPostagem,
+  slugPostagem,
   postPostagem,
   putPostagem,
 } from "../services/postagemService.js";
@@ -13,6 +14,17 @@ class PostagemController {
       res.status(200).json(listapostagens);
     } else {
       res.status(200).json("Nenhuma postagem na base de dados");
+    }
+  }
+
+  static async getByPostagem(req, res) {
+    const postagem = await slugPostagem(req.params.slug);
+
+    if(postagem){
+      res.status(200).json(postagem);
+    }
+    else {
+      res.status(400).json("Nenhuma postagem com esse slug na base de dados");
     }
   }
 

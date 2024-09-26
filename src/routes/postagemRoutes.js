@@ -5,6 +5,7 @@ import authMiddleware from "../middleware/authMiddleware.js";
 const routes = express.Router();
 
 routes.get("/postagem", PostagemController.listarPostagens);
+routes.get("/postagem/slug/:slug", PostagemController.getByPostagem);
 routes.post("/postagem", authMiddleware, PostagemController.insertPostagem);
 routes.put("/postagem/:id", authMiddleware, PostagemController.updatePostagem);
 routes.delete("/postagem/:id", authMiddleware, PostagemController.deletarPostagem);

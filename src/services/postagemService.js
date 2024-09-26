@@ -9,6 +9,14 @@ export const getPostagem = async (data) => {
   });
 };
 
+export const slugPostagem = async (slug) => {
+  return await prisma.postagem.findFirst({
+    where: {
+      slug: slug,
+    }
+  });
+}
+
 export const postPostagem = async (data) => {
   const novapostagem = await prisma.postagem.create({
     data: {
