@@ -1,11 +1,11 @@
 import prisma from "../prisma/client.js";
 import generateSlug from "../utils/slugUtils.js";
 
-export const getPostagem = async (data) => {
+export const getPostagem = async () => {
   return await prisma.postagem.findMany({
     include: {
-      comentarios: true
-    }
+      comentarios: true,
+    },
   });
 };
 
@@ -13,9 +13,17 @@ export const slugPostagem = async (slug) => {
   return await prisma.postagem.findFirst({
     where: {
       slug: slug,
-    }
+    },
   });
-}
+};
+
+export const myPostagens = async (id) => {
+  return await prisma.postagem.findMany({
+    where: {
+       autorId: id,
+    },
+  });
+};
 
 export const postPostagem = async (data) => {
   const novapostagem = await prisma.postagem.create({

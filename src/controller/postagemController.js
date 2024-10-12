@@ -2,6 +2,7 @@ import {
   deletePostagem,
   getPostagem,
   slugPostagem,
+  myPostagens,
   postPostagem,
   putPostagem,
 } from "../services/postagemService.js";
@@ -20,11 +21,20 @@ class PostagemController {
   static async getByPostagem(req, res) {
     const postagem = await slugPostagem(req.params.slug);
 
-    if(postagem){
+    if (postagem) {
       res.status(200).json(postagem);
-    }
-    else {
+    } else {
       res.status(400).json("Nenhuma postagem com esse slug na base de dados");
+    }
+  }
+
+  static async getMyPosts(req, res) {
+    const listamyposts = await myPostagens(req.params.id);
+
+    if (listamyposts) {
+      res.status(200).json(listamyposts);
+    } else {
+      res.status(400).json("Nenhuma postagem do usuario encontrada");
     }
   }
 
