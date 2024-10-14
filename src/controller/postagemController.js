@@ -1,6 +1,7 @@
 import {
   deletePostagem,
   getPostagem,
+  idPostagem,
   slugPostagem,
   myPostagens,
   postPostagem,
@@ -25,6 +26,16 @@ class PostagemController {
       res.status(200).json(postagem);
     } else {
       res.status(400).json("Nenhuma postagem com esse slug na base de dados");
+    }
+  }
+
+  static async getById(req, res) {
+    const postagemId = await idPostagem(req.params.id);
+
+    if (postagemId) {
+      res.status(200).json(postagemId);
+    } else {
+      res.status(400).json("Nenhuma postagem com o id foi encontrada");
     }
   }
 
@@ -62,18 +73,21 @@ class PostagemController {
     try {
       await putPostagem(req.params.id, req.body);
 
-      res.status(201).json(`A postagem foi atualizada com sucesso`);
+      return res
+        .status(200)
+        .json({ message: "A postagem foi atualizada com sucesso." });
     } catch (erro) {
       if (erro.code === "P2002" && erro.meta?.target.includes("slug")) {
-        res
-          .status(400)
-          .json(
-            `Ocorreu um erro ao atualizar a postagem: Este slug já está em uso. Por favor, escolha outro slug.`
-          );
+        return res.status(400).json({
+          error: true,
+          message:
+            "Ocorreu um erro ao atualizar a postagem: Este slug já está em uso. Por favor, escolha outro slug.",
+        });
       } else {
-        res
-          .status(500)
-          .json(`Ocorreu um erro ao atualizar a postagem: ${erro.message}`);
+        return res.status(500).json({
+          error: true,
+          message: `Ocorreu um erro ao atualizar a postagem: ${erro.message}`,
+        });
       }
     }
   }

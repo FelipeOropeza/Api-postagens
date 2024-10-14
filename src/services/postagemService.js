@@ -17,10 +17,18 @@ export const slugPostagem = async (slug) => {
   });
 };
 
+export const idPostagem = async (id) => {
+  return await prisma.postagem.findFirst({
+    where: {
+      id: id,
+    },
+  });
+};
+
 export const myPostagens = async (id) => {
   return await prisma.postagem.findMany({
     where: {
-       autorId: id,
+      autorId: id,
     },
   });
 };
