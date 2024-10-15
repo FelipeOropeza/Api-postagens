@@ -14,6 +14,9 @@ export const slugPostagem = async (slug) => {
     where: {
       slug: slug,
     },
+    include: {
+      comentarios: true,
+    },
   });
 };
 
@@ -30,6 +33,9 @@ export const myPostagens = async (id) => {
     where: {
       autorId: id,
     },
+    include: {
+      comentarios: true,
+    }
   });
 };
 
