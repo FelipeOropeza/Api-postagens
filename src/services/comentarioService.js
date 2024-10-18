@@ -1,7 +1,11 @@
 import prisma from "../prisma/client.js";
 
 export const getComentario = async (data) => {
-  return await prisma.comentario.findMany();
+  return await prisma.comentario.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 };
 
 export const postComentario = async (data) => {

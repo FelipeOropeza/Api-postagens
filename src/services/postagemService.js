@@ -6,6 +6,9 @@ export const getPostagem = async () => {
     include: {
       comentarios: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 };
 
@@ -15,7 +18,11 @@ export const slugPostagem = async (slug) => {
       slug: slug,
     },
     include: {
-      comentarios: true,
+      comentarios: {
+        orderBy: {
+          createdAt: "desc", 
+        },
+      },
     },
   });
 };
@@ -35,7 +42,10 @@ export const myPostagens = async (id) => {
     },
     include: {
       comentarios: true,
-    }
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 };
 

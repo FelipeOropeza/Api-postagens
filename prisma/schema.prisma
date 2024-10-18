@@ -15,7 +15,7 @@ model Postagem {
   autor       Usuario      @relation(fields: [autorId], references: [id])
   autorId     String       @db.ObjectId
   comentarios Comentario[]
-  likes       Int          @default(0)
+  createdAt   DateTime     @default(now())
 }
 
 model Usuario {
@@ -34,5 +34,5 @@ model Comentario {
   postId   String   @db.ObjectId
   autor    Usuario  @relation(fields: [autorId], references: [id])
   autorId  String   @db.ObjectId
-  likes    Int      @default(0)
+  createdAt DateTime @default(now())
 }
