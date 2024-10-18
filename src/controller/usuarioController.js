@@ -6,11 +6,11 @@ import {
 } from "../services/usuarioService.js";
 
 class UsuarioController {
-  static async listarUsuario(req, res) {
-    const listausuarios = await getUsuario();
+  static async getByUser(req, res) {
+    const user = await getUsuario(req.params.id);
 
-    if (listausuarios.length > 0) {
-      res.status(200).json(listausuarios);
+    if (user) {
+      res.status(200).json(user);
     } else {
       res.status(200).json("Nenhum usuario na base de dados");
     }

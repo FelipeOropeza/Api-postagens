@@ -2,8 +2,14 @@ import prisma from "../prisma/client.js";
 import bcryptjs from "bcryptjs";
 import validarEmail from "../utils/emailValidationUtils.js";
 
-export const getUsuario = async () => {
-  return await prisma.usuario.findMany();
+export const getUsuario = async (id) => {
+  const getUser = await prisma.usuario.findFirst({
+    where: {
+      id: id,
+    },
+  });
+
+  return getUser;
 };
 
 export const postUsuario = async (data) => {
