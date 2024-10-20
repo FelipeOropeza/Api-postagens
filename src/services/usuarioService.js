@@ -54,9 +54,23 @@ export const putUsuario = async (id, data) => {
 };
 
 export const deleteUsuario = async (id) => {
-  return await prisma.usuario.delete({
-    where: {
-      id: id,
-    },
+  return await prisma.$transaction(async (prisma) => {
+    await prisma.comentario.deleteMany({
+      where: {
+        autorId: id,
+      },
+    });
+
+    await prisma.postagem.deleteMany({
+      where: {
+        autorId: id,
+      },
+    });
+
+    return await prisma.usuario.delete({
+      where: {
+        id: id,
+      },
+    });
   });
 };
