@@ -54,19 +54,9 @@ export const putUsuario = async (id, data) => {
 };
 
 export const deleteUsuario = async (id) => {
-  return await prisma.$transaction(async (prisma) => {
-    // Remove postagens e comentários associados automaticamente
-    await prisma.postagem.deleteMany({
-      where: {
-        autorId: id,
-      },
-    });
-
-    // Remove o usuário
-    return await prisma.usuario.delete({
-      where: {
-        id: id,
-      },
-    });
+  return await prisma.usuario.delete({
+    where: {
+      id: id,
+    },
   });
 };

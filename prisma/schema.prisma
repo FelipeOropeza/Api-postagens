@@ -30,7 +30,7 @@ model Usuario {
 model Comentario {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   conteudo String
-  post     Postagem @relation(fields: [postId], references: [id], onDelete: Cascade)
+  post     Postagem @relation(fields: [postId], references: [id])
   postId   String   @db.ObjectId
   autor    Usuario  @relation(fields: [autorId], references: [id])
   autorId  String   @db.ObjectId
