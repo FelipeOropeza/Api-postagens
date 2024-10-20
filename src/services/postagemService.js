@@ -78,6 +78,12 @@ export const putPostagem = async (id, data) => {
 };
 
 export const deletePostagem = async (id) => {
+  await prisma.comentario.deleteMany({
+    where: {
+      postId: id,
+    }
+  });
+
   return await prisma.postagem.delete({
     where: {
       id: id,

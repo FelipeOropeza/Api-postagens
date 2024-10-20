@@ -54,6 +54,32 @@ export const putUsuario = async (id, data) => {
 };
 
 export const deleteUsuario = async (id) => {
+  const postagens = await prisma.postagem.findMany({
+    where: {
+      autorId: id,
+    },
+  });
+
+  for (const postagem of postagens) {
+    await prisma.comentario.deleteMany({
+      where: {
+        postId: postagem.id,
+      },
+    });
+
+    await prisma.postagem.delete({
+      where: {
+        id: postagem.id,
+      },
+    });
+  }
+
+  await prisma.comentario.deleteMany({
+    where: {
+      autorId: id,
+    },
+  });
+
   return await prisma.usuario.delete({
     where: {
       id: id,
