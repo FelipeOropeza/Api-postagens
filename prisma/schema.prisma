@@ -12,6 +12,7 @@ model Postagem {
   slug        String       @unique
   titulo      String
   body        String
+  imageUrl    String?
   autor       Usuario      @relation(fields: [autorId], references: [id])
   autorId     String       @db.ObjectId
   comentarios Comentario[]
@@ -28,11 +29,11 @@ model Usuario {
 }
 
 model Comentario {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  conteudo String
-  post     Postagem @relation(fields: [postId], references: [id])
-  postId   String   @db.ObjectId
-  autor    Usuario  @relation(fields: [autorId], references: [id])
-  autorId  String   @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  conteudo  String
+  post      Postagem @relation(fields: [postId], references: [id])
+  postId    String   @db.ObjectId
+  autor     Usuario  @relation(fields: [autorId], references: [id])
+  autorId   String   @db.ObjectId
   createdAt DateTime @default(now())
 }

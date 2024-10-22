@@ -1,3 +1,4 @@
+import { uploadImage } from "../services/imageService.js";
 import {
   deletePostagem,
   getPostagem,
@@ -51,7 +52,15 @@ class PostagemController {
 
   static async insertPostagem(req, res) {
     try {
-      await postPostagem(req.body);
+
+      let publicUrl = null;
+
+      if (req.file) {
+        publicUrl = await uploadImage(req.file);
+      }
+
+      const { titulo, body, autorId } = req.body;
+      await postPostagem({ titulo, body, autorId }, publicUrl);
 
       res.status(201).json(`Postagem publicada com sucesso!!`);
     } catch (erro) {

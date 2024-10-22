@@ -49,12 +49,13 @@ export const myPostagens = async (id) => {
   });
 };
 
-export const postPostagem = async (data) => {
+export const postPostagem = async (data, imgURL) => {
   const novapostagem = await prisma.postagem.create({
     data: {
       slug: generateSlug(data.titulo),
       titulo: data.titulo,
       body: data.body,
+      imageUrl: imgURL,
       autor: {
         connect: { id: data.autorId },
       },
