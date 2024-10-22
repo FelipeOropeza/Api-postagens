@@ -58,7 +58,6 @@ class PostagemController {
       if (req.file) {
         publicUrl = await uploadImage(req.file);
       }
-      console.log(publicUrl);
       const { titulo, body, autorId } = req.body;
       await postPostagem({ titulo, body, autorId }, publicUrl);
 
