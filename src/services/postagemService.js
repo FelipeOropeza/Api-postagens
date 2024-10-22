@@ -54,8 +54,8 @@ export const postPostagem = async (data, imgURL) => {
     data: {
       slug: generateSlug(data.titulo),
       titulo: data.titulo,
-      body: data.body,
       imageUrl: imgURL,
+      body: data.body,
       autor: {
         connect: { id: data.autorId },
       },

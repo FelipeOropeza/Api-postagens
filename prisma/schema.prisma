@@ -12,7 +12,7 @@ model Postagem {
   slug        String       @unique
   titulo      String
   body        String
-  imageUrl    String?
+  imageUrl    String
   autor       Usuario      @relation(fields: [autorId], references: [id])
   autorId     String       @db.ObjectId
   comentarios Comentario[]
