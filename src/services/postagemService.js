@@ -32,6 +32,9 @@ export const idPostagem = async (id) => {
     where: {
       id: id,
     },
+    select: {
+      imageUrl: true,
+    },
   });
 };
 

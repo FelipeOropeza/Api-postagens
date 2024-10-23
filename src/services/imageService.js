@@ -26,7 +26,22 @@ export async function uploadImage(file) {
       }
     });
 
-    // Finalizando o upload
     blobStream.end(file.buffer);
+  });
+}
+
+export async function deleteImage(fileName) {
+  return new Promise((resolve, reject) => {
+    const file = bucket.file(fileName);
+
+    file.delete()
+      .then(() => {
+        console.log('Imagem excluída com sucesso!');
+        resolve('Imagem excluída com sucesso!');
+      })
+      .catch((error) => {
+        console.error('Erro ao excluir a imagem:', error);
+        reject(new Error('Erro ao excluir a imagem.'));
+      });
   });
 }

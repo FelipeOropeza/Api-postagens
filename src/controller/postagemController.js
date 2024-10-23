@@ -1,4 +1,4 @@
-import { uploadImage } from "../services/imageService.js";
+import { deleteImage, uploadImage } from "../services/imageService.js";
 import {
   deletePostagem,
   getPostagem,
@@ -52,7 +52,6 @@ class PostagemController {
 
   static async insertPostagem(req, res) {
     try {
-
       let publicUrl = null;
 
       if (req.file) {
@@ -102,6 +101,11 @@ class PostagemController {
 
   static async deletarPostagem(req, res) {
     try {
+      const postagem = await idPostagem(req.params.id); 
+      const publicUrl = postagem.imageUrl;
+      const fileName = publicUrl.split("/o/")[1].split("?alt=media")[0];
+      await deleteImage(fileName)
+
       await deletePostagem(req.params.id);
 
       res.status(200).json(`A postagem foi deletada com sucesso`);
