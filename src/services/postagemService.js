@@ -20,7 +20,14 @@ export const slugPostagem = async (slug) => {
     include: {
       comentarios: {
         orderBy: {
-          createdAt: "desc", 
+          createdAt: "desc",
+        },
+        include: {
+          autor: {
+            select: {
+              nome: true,
+            },
+          },
         },
       },
     },
@@ -31,9 +38,6 @@ export const idPostagem = async (id) => {
   return await prisma.postagem.findFirst({
     where: {
       id: id,
-    },
-    select: {
-      imageUrl: true,
     },
   });
 };
@@ -77,6 +81,7 @@ export const putPostagem = async (id, data) => {
       slug: data.titulo != null ? generateSlug(data.titulo) : data.slug,
       titulo: data.titulo,
       body: data.body,
+      imageUrl: data.imageUrl,
     },
   });
 };
@@ -85,7 +90,7 @@ export const deletePostagem = async (id) => {
   await prisma.comentario.deleteMany({
     where: {
       postId: id,
-    }
+    },
   });
 
   return await prisma.postagem.delete({

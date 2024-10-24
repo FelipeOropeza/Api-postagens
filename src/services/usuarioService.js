@@ -7,6 +7,11 @@ export const getUsuario = async (id) => {
     where: {
       id: id,
     },
+    select:{
+      id: true,
+      nome: true,
+      email: true
+    }
   });
 
   return getUser;
