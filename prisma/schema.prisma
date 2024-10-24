@@ -15,8 +15,18 @@ model Postagem {
   imageUrl    String
   autor       Usuario      @relation(fields: [autorId], references: [id])
   autorId     String       @db.ObjectId
+  likes       Like[]
   comentarios Comentario[]
   createdAt   DateTime     @default(now())
+}
+
+model Like {
+  id     String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId String    
+  postId String     @db.ObjectId
+  post   Postagem   @relation(fields: [postId], references: [id])
+
+  @@unique([userId, postId])
 }
 
 model Usuario {
