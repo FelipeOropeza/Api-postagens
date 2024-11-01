@@ -8,6 +8,7 @@ Este é o backend da aplicação **DicaCommunity**, uma plataforma de compartilh
 - **MongoDB** com **Prisma**: banco de dados flexível e consultas otimizadas.
 - **JWT**: autenticação baseada em tokens para segurança.
 - **Firebase Storage**: armazenamento de imagens dos usuários e postagens.
+- **Nodemon**: para reinicialização automática do servidor durante o desenvolvimento.
 
 ## Funcionalidades Principais
 
@@ -19,8 +20,8 @@ Este é o backend da aplicação **DicaCommunity**, uma plataforma de compartilh
 
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/seu-usuario/dicacommunity-backend.git
-   cd dicacommunity-backend
+   git clone https://github.com/FelipeOropeza/Api-postagens.git
+   cd Api-postagens
 
 2. **Certifique-se de ter o Node.js instalado**:
   Versão mínima recomendada: 14.x
