@@ -9,6 +9,10 @@ Este é o backend da aplicação **DicaCommunity**, uma plataforma de compartilh
 - **JWT**: autenticação baseada em tokens para segurança.
 - **Firebase Storage**: armazenamento de imagens dos usuários e postagens.
 - **Nodemon**: para reinicialização automática do servidor durante o desenvolvimento.
+- **Bcryptjs**: Biblioteca para hash de senhas, garantindo segurança na autenticação de usuários.
+- **Dotenv**: Carrega variáveis de ambiente a partir de um arquivo `.env`, mantendo segredos e configurações fora do código-fonte.
+- **Firebase-admin**: SDK para interagir com os serviços do Firebase, incluindo autenticação e armazenamento.
+- **Multer**: Middleware para manipulação de `multipart/form-data`, facilitando o upload de arquivos.
 
 ## Funcionalidades Principais
 
