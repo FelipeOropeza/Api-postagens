@@ -37,6 +37,10 @@ Este é o backend da aplicação **DicaCommunity**, uma plataforma de compartilh
 4. **Crie o arquivo .env com base no arquivo .env.example fornecido**:
    Configure as variáveis de ambiente de acordo com as credenciais e configurações do seu ambiente.
 
-5. **Execute o servidor**:
+5. **Crie as coleções no banco de dados**: Para aplicar o modelo de dados e criar as coleções no MongoDB, execute o seguinte comando do Prisma:
+   ```bash
+   npx prisma db push
+
+6. **Execute o servidor**:
     ```bash
     npm run dev
